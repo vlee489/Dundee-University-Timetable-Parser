@@ -4,5 +4,6 @@
   "timetableURL": "",
   "year": "",
   "modulesTaken": [],
-  "colourID": []
+  "colourID": [],
+  "loaded": false
 }

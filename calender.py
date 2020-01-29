@@ -63,9 +63,13 @@ def AddEvents(service):
             'id': event['UUID'],
             'colorId': event['colourID']
         }
-        event = service.events().insert(calendarId=config.CalendarID, body=response).execute()
-        print('Event created: %s' % (event.get('htmlLink')))
-        print(event)
+        try:
+            event = service.events().insert(calendarId=config.CalendarID, body=response).execute()
+            print('Event created: %s' % (event.get('htmlLink')))
+            print(event)
+        except:
+            print('Error uploading')
+            print(event)
         time.sleep(0.1)
     database.update({"updated": False, "Checked": False, 'added': True})
 
@@ -92,9 +96,13 @@ def updateAndDeleteEvents(service):
             'id': event['UUID'],
             'colorId': event['colourID']
         }
-        event = service.events().insert(calendarId=config.CalendarID, body=response).execute()
-        print('Event created: %s' % (event.get('htmlLink')))
-        print('Added event: ' + event['UUID'])
+        try:
+            event = service.events().insert(calendarId=config.CalendarID, body=response).execute()
+            print('Event created: %s' % (event.get('htmlLink')))
+            print('Added event: ' + event['UUID'])
+        except:
+            print('Error uploading')
+            print(event)
         database.update({'updated': False, 'added': True}, find.UUID == event['UUID'])
 
 
@@ -118,16 +126,21 @@ def updateAndDeleteEvents(service):
             },
             'colorId': event['colourID']
         }
-
-        eventToUpdate = service.events().get(calendarId=config.CalendarID, eventId=event['UUID']).execute()
-        update = service.events().update(calendarId=config.CalendarID, eventId=eventToUpdate['id'], body=response).execute()
-        print('Event Updated: %s' % (update.get('htmlLink')))
+        try:
+            eventToUpdate = service.events().get(calendarId=config.CalendarID, eventId=event['UUID']).execute()
+            update = service.events().update(calendarId=config.CalendarID, eventId=eventToUpdate['id'], body=response).execute()
+            print('Event Updated: %s' % (update.get('htmlLink')))
+        except:
+            print('Error updating')
 
     deletedEvents = database.search(find.Checked == False)
     for event in deletedEvents:
-        update = service.events().delete(calendarId=config.CalendarID, eventId=event['UUID']).execute()
-        print('Event Updated: %s' % (update.get('htmlLink')))
-        database.remove(find.UUID == event['UUID'])
+        try:
+            update = service.events().delete(calendarId=config.CalendarID, eventId=event['UUID']).execute()
+            print('Event Updated: %s' % (update.get('htmlLink')))
+            database.remove(find.UUID == event['UUID'])
+        except:
+            print('Error updating')
 
     database.update({"updated": False, "Checked": False})
 
@@ -153,5 +166,8 @@ def getCalID(service):
 
 
 if __name__ == '__main__':
+    print("I'm going to delete all entries made to Google Calendar by this program in 5 seconds")
+    print('Ctrl/CMD + C to cancel')
+    time.sleep(5)
     service = main()
     deleteEvents(service)

@@ -12,7 +12,7 @@ WeekDateJSON = ''
 
 database = 'config/classesDB.json'  # This is the database file that holds the user's classes
 # Used mainly for dev, allows the generation of a new set of ids so it doesn't clash with previous ones on google Cal
-idAddition = "testing2"
+idAddition = ""
 
 # OPens JSON file and loads configs
 with open(jsonFile, "r") as configFile:
