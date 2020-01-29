@@ -1,5 +1,5 @@
 {
-  "googleAPIKeyFile": "config/credentials.json",
+  "googleAPIKeyFile": "",
   "CalendarID": "",
   "timetableURL": "",
   "year": "",
