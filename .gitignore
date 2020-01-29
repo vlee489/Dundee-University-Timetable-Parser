@@ -202,6 +202,6 @@ fabric.properties
 
 # Secrets
 credentials.json
-config.py
 classesDB.json
 token.pickle
+config.json
