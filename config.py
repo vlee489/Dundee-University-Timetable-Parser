@@ -17,7 +17,7 @@ idAddition = ""
 # OPens JSON file and loads configs
 with open(jsonFile, "r") as configFile:
     jsonData = json.load(configFile)
-    googleAPIKeyFile = 'config/{}'.format(jsonData['googleAPIKeyFile'])
+    googleAPIKeyFile = 'config/{}'.format('credentials.json')
     CalendarID = jsonData['CalendarID']
     timetableURL = jsonData['timetableURL']
     year = jsonData['year']

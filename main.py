@@ -49,10 +49,8 @@ def setup():
     print('Now we need to get a Google Calendar API key')
     print('Go to https://developers.google.com/calendar/quickstart/python and click on "Enable the Google Calendar API')
     print('Then click on "DOWNLOAD CLIENT CONFIGURATION" and save the downloaded file to the config folder')
-    print('')
-    print('Now tell me the name of the file your placed into the config folder, this is usually called credentials.json')
-    print('I need the file ending as well e.g: json')
-    googleAPI = input('credentials file name: ')
+    print('Then rename the file as credentials.json')
+    googleAPI = input('enter to continue')
     ClearScreen()
 
     # Splits the modules up and places in list as well as assinging a colour to each module
