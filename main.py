@@ -69,7 +69,7 @@ def setup():
 
     print('Would you like the timetable to go into a different calendar other than you default one?')
     prompt = input('Yes/No: ')
-    if 'Y' in prompt:
+    if 'Y' in prompt or 'y' in prompt:
         print('We going to display the calendars you have on you account')
         print('Calendar Name : ID')
         calender.getCalID(calender.main())
